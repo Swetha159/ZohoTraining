@@ -1,0 +1,95 @@
+Exercise 1:
+
+C:\Users\S SWETHA\Desktop\JavaPractice\myprojectfiles>javac -d myclassfiles Bird.java
+
+C:\Users\S SWETHA\Desktop\JavaPractice\myprojectfiles>javac -cp myclassfiles/ -d myclassfiles Parrot.java
+
+C:\Users\S SWETHA\Desktop\JavaPractice\myprojectfiles>javac -cp myclassfiles/ -d myclassfiles TestRunner.java
+
+C:\Users\S SWETHA\Desktop\JavaPractice\myprojectfiles>java -cp myclassfiles/ test.TestRunner
+Am Flying
+Am Flying
+Am Speaking
+
+
+
+Exercise 2:
+
+C:\Users\S SWETHA\Desktop\JavaPractice>cd test
+
+C:\Users\S SWETHA\Desktop\JavaPractice\test>javac -d myclasses "C:\Users\S SWETHA\Desktop\JavaPractice\myprojectfiles\Bird.java"
+
+C:\Users\S SWETHA\Desktop\JavaPractice\test>javac -cp myclasses -d myclasses "C:\Users\S SWETHA\Desktop\JavaPractice\myprojectfiles\Parrot.java"
+
+C:\Users\S SWETHA\Desktop\JavaPractice\test>javac -cp myclasses -d myclasses "C:\Users\S SWETHA\Desktop\JavaPractice\myprojectfiles\TestRunner.java"
+
+C:\Users\S SWETHA\Desktop\JavaPractice\test>java -cp myclasses test.TestRunner
+Am Flying
+Am Flying
+Am Speaking
+
+
+Exercise 3:
+
+
+C:\Users\S SWETHA\Desktop\JavaPractice\test>cd ..
+
+C:\Users\S SWETHA\Desktop\JavaPractice>cd myprojectfiles
+
+C:\Users\S SWETHA\Desktop\JavaPractice\myprojectfiles>javac -d "C:\Users\S SWETHA\Desktop\JavaPractice\file1" Bird.java
+
+C:\Users\S SWETHA\Desktop\JavaPractice\myprojectfiles>javac -cp "C:\Users\S SWETHA\Desktop\JavaPractice\file1" -d "C:\Us
+ers\S SWETHA\Desktop\JavaPractice\file2" Parrot.java
+
+C:\Users\S SWETHA\Desktop\JavaPractice\myprojectfiles>javac -cp "C:\Users\S SWETHA\Desktop\JavaPractice\file1";"C:\Users\S SWETHA\Desktop\JavaPractice\file2" -d "C:\Users\S SWETHA\Desktop\JavaPractice\runfile" TestRunner.java
+
+C:\Users\S SWETHA\Desktop\JavaPractice\myprojectfiles>java -cp "C:\Users\S SWETHA\Desktop\JavaPractice\file1";"C:\Users\
+S SWETHA\Desktop\JavaPractice\file2";"C:\Users\S SWETHA\Desktop\JavaPractice\runfile" test.TestRunner
+Am Flying
+Am Flying
+Am Speaking
+
+
+
+Exercise 4:
+
+C:\Users\S SWETHA\Desktop\JavaPractice\myprojectfiles>javac -d myclasses Bird.java
+
+C:\Users\S SWETHA\Desktop\JavaPractice\myprojectfiles>javac -cp myclasses/ -d myclasses Parrot.java
+
+C:\Users\S SWETHA\Desktop\JavaPractice\myprojectfiles>javac -cp myclasses/ -d myclasses TestRunner.java
+
+C:\Users\S SWETHA\Desktop\JavaPractice\myprojectfiles>java -cp myclasses/ test.TestRunner
+Am Flying
+Am Flying
+Am Speaking
+
+C:\Users\S SWETHA\Desktop\JavaPractice\myprojectfiles>jar cvf myclasses.jar -C myclasses .
+added manifest
+adding: birds/(in = 0) (out= 0)(stored 0%)
+adding: birds/Bird.class(in = 391) (out= 277)(deflated 29%)
+adding: child/(in = 0) (out= 0)(stored 0%)
+adding: child/Parrot.class(in = 393) (out= 284)(deflated 27%)
+adding: test/(in = 0) (out= 0)(stored 0%)
+adding: test/TestRunner.class(in = 537) (out= 375)(deflated 30%)
+
+C:\Users\S SWETHA\Desktop\JavaPractice\myprojectfiles>java -cp myclasses.jar test.TestRunner
+Am Flying
+Am Flying
+Am Speaking
+
+
+
+
+Exercise 5 :
+
+C:\Users\S SWETHA\Desktop\JavaPractice\myprojectfiles>javac -d myclasses Bird.java
+C:\Users\S SWETHA\Desktop\JavaPractice\myprojectfiles>java -cp myclasses;myclasses.jar test.TestRunner
+Am Flying So High
+Am Flying So High
+Am Speaking
+
+C:\Users\S SWETHA\Desktop\JavaPractice\myprojectfiles>java -cp myclasses.jar;myclasses test.TestRunner
+Am Flying
+Am Flying
+Am Speaking
