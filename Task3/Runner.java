@@ -2,8 +2,7 @@ package test;
 import tasks.Task;
 import java.util.Scanner;
 import java.util.Arrays;
-import myexceptions.MismatchException;
-import myexceptions.EmptyException;
+import myexceptions.TaskException;
 class Runner
 {
 	public static void main(String args[])
@@ -255,11 +254,7 @@ class Runner
 					System.out.print("Enter Valid Choice\n");
 			}
 		}
-	      	catch(EmptyException e)
-	      	{
-			System.out.println(e.getMessage());
-	      	}
-		catch(MismatchException e)
+	      	catch(TaskException e)
 	      	{
 			System.out.println(e.getMessage());
 	      	}

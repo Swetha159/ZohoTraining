@@ -1,39 +1,39 @@
 package tasks;
-import myexceptions.MismatchException;
-import myexceptions.EmptyException;
+import myexceptions.TaskException;
+
 
 
 public class Task {
-	public  void validateInput(String input ,String inputName) throws EmptyException
+	public static void validateInput(String input ,String inputName) throws TaskException
 	{
 		if(input==null)
 		{
-			throw new EmptyException(inputName +" is empty ");
+			throw new TaskException(inputName +" is empty ");
 		}
 	}
-	public  int findLength(String input) throws EmptyException
+	public static int findLength(String input) throws TaskException
 	{	
 		validateInput(input,"string");
 		return input.length();
 	}
 	
-	public  char[] convertToCharArray(String input) throws EmptyException
+	public static char[] convertToCharArray(String input) throws TaskException
 	{
 		validateInput(input,"string");
 		return input.toCharArray();
 	}
 	
-	public  char findPositionValue(String input,int positionFromLast) throws EmptyException , MismatchException
+	public static char findPositionValue(String input,int positionFromLast) throws TaskException 
 	{
 		validateInput(input,"string");
 		int length = findLength(input);
 		if(length<positionFromLast)
 		{
-			throw new MismatchException("The position value is greater than the size of the string");
+			throw new TaskException("The position value is greater than the size of the string");
 		}
 		return input.charAt(length-positionFromLast);
 	}
-	public  int findNumberOfOccurences(String input , char character) throws EmptyException
+	public static int findNumberOfOccurences(String input , char character) throws TaskException
 	{
 		validateInput(input,"string");
 		char[] charArray =convertToCharArray(input) ;
@@ -48,73 +48,73 @@ public class Task {
 		return count;
 	}
 	
-	public  int findGreatestPosition(String input , char character) throws EmptyException,MismatchException
+	public static int findGreatestPosition(String input , char character) throws TaskException
 	{
 		validateInput(input,"string");
 		if(input.indexOf(character)==-1)
 		{
-			throw new MismatchException("The character is not found in the string ");
+			throw new TaskException("The character is not found in the string ");
 		}
 		return input.lastIndexOf(character);
 	}	 
-	public  String findSuffix(String input,int numberOfCharacters) throws EmptyException , MismatchException
+	public static String findSuffix(String input,int numberOfCharacters) throws TaskException 
 	{
 		validateInput(input,"string");
 		int length = findLength(input);
 		if(length<numberOfCharacters)
 		{
-			throw new MismatchException("The number of characters is greater than the size of the string");
+			throw new TaskException("The number of characters is greater than the size of the string");
 		}
 		return input.substring(findLength(input)-numberOfCharacters);
 	}
 	
-	public  String findPrefix(String input,int numberOfCharacters) throws EmptyException,MismatchException
+	public static String findPrefix(String input,int numberOfCharacters) throws TaskException
 	{
 		validateInput(input,"string");
 		int length = findLength(input);
 		if(length<numberOfCharacters)
 		{
-			throw new MismatchException("The number of characters is greater than the size of the string");
+			throw new TaskException("The number of characters is greater than the size of the string");
 		}
 		return input.substring(0,numberOfCharacters);
 	}
 
-	public  String replacePrefix(String input,int numberOfCharacters,String substitute) throws EmptyException,MismatchException
+	public static String replacePrefix(String input,int numberOfCharacters,String substitute) throws TaskException
 	{
 		validateInput(input,"string");
 		validateInput(substitute,"substitute");
 		if(numberOfCharacters!=substitute.length())
 		{
-			throw new MismatchException("Size of the characters to be replaced is not same as the size of the substitute string");
+			throw new TaskException("Size of the characters to be replaced is not same as the size of the substitute string");
 		}
 		return input.replace(findPrefix(input,numberOfCharacters),substitute);
 	}
 	
-	public  boolean checkStartsWith(String input,String prefix) throws EmptyException 
+	public static boolean checkStartsWith(String input,String prefix) throws TaskException 
 	{
 		validateInput(input,"string");
 		validateInput(prefix,"prefix");
 		return input.startsWith(prefix);
 	}
 	
-	public  boolean checkEndsWith(String input,String suffix) throws EmptyException 
+	public static boolean checkEndsWith(String input,String suffix) throws TaskException 
 	{
 		validateInput(input,"string");
 		validateInput(suffix,"suffix");
 		return input.endsWith(suffix);
 	}
 
-	public  String convertLowerCase(String input) throws EmptyException 
+	public static String convertLowerCase(String input) throws TaskException 
 	{
 		validateInput(input,"string");
 		return input.toLowerCase();
 	}
-	public  String convertUpperCase(String input) throws EmptyException 
+	public static String convertUpperCase(String input) throws TaskException 
 	{
 		validateInput(input,"string");
 		return input.toUpperCase();
 	}
-	public  String reverseString(String input) throws EmptyException 
+	public static String reverseString(String input) throws TaskException 
 	{
 		validateInput(input,"string");
 		int length = findLength(input);
@@ -129,50 +129,50 @@ public class Task {
 		return String.valueOf(reversedString);
 	}
 
-	public  String concatenateStrings(String input,String delimiterToSplit , String delimiterToConcatenate) throws EmptyException , MismatchException
+	public static String concatenateStrings(String input,String delimiterToSplit , String delimiterToConcatenate) throws TaskException 
 	{
 		validateInput(input,"string");
 		validateInput(delimiterToSplit,"delimiter to split");
 		validateInput(delimiterToConcatenate,"delimiter to concatenate");
 		if(input.contains(delimiterToSplit)!=true)
 		{
-			throw new MismatchException("The delimiter to split is not found");
+			throw new TaskException("The delimiter to split is not found");
 		}
 	        return input.replace(delimiterToSplit,delimiterToConcatenate);	 
 	}
-	public  String[] encloseInStringArray(String input,String delimiterToSplit) throws EmptyException , MismatchException
+	public static String[] encloseInStringArray(String input,String delimiterToSplit) throws TaskException 
 	{
 		validateInput(input,"string");
 		validateInput(delimiterToSplit,"delimiter to split");
 		if(input.contains(delimiterToSplit)!=true)
 		{
-			throw new MismatchException("The delimiter to split is not found in the string ");
+			throw new TaskException("The delimiter to split is not found in the string ");
 		}
 	        return input.split(delimiterToSplit);	 
 	}
 
-	public  String mergeWithDelimiter(String[] stringArray , String delimiter) throws EmptyException 
+	public static String mergeWithDelimiter(String[] stringArray , String delimiter) throws TaskException 
 	{
 		if(stringArray==null)
 		{
-			throw new EmptyException("String Array is empty ");
+			throw new TaskException("String Array is empty ");
 		}
 		validateInput(delimiter,"delimiter");
 		return String.join(delimiter,stringArray);
 	}
-	public boolean checkEqualityCaseSensitive(String input1,String input2) throws EmptyException 
+	public static boolean checkEqualityCaseSensitive(String input1,String input2) throws TaskException 
 	{
 		validateInput(input1,"string1");
 		validateInput(input2,"string2");
 		return input1.equals(input2);
 	}
-	public  boolean checkEqualityCaseInSensitive(String input1,String input2) throws EmptyException 
+	public static boolean checkEqualityCaseInSensitive(String input1,String input2) throws TaskException 
 	{
 		validateInput(input1,"string1");
 		validateInput(input2,"string2");
 		return input1.equalsIgnoreCase(input2);
 	}
-	public  String removeLeadingAndTrailingSpace(String input) throws EmptyException 
+	public static String removeLeadingAndTrailingSpace(String input) throws TaskException 
 	{
 		validateInput(input,"string");
 		return input.trim();
