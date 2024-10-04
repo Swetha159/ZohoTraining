@@ -27,7 +27,7 @@ public class Task {
 	{
 		validateInput(input,"string");
 		int length = findLength(input);
-		if(length<positionFromLast)
+		if(positionFromLast<1&&length<positionFromLast)
 		{
 			throw new TaskException("The position value is greater than the size of the string");
 		}
@@ -51,11 +51,12 @@ public class Task {
 	public  int findGreatestPosition(String input , char character) throws TaskException
 	{
 		validateInput(input,"string");
-		if(input.indexOf(character)==-1)
+		int index = input.lastIndexOf(character);
+		if(index==-1)
 		{
 			throw new TaskException("The character is not found in the string ");
 		}
-		return input.lastIndexOf(character);
+		return index ;
 	}	 
 	public  String findSuffix(String input,int numberOfCharacters) throws TaskException 
 	{
@@ -83,10 +84,6 @@ public class Task {
 	{
 		validateInput(input,"string");
 		validateInput(substitute,"substitute");
-		if(numberOfCharacters!=substitute.length())
-		{
-			throw new TaskException("Size of the characters to be replaced is not same as the size of the substitute string");
-		}
 		return input.replace(findPrefix(input,numberOfCharacters),substitute);
 	}
 	
@@ -119,13 +116,10 @@ public class Task {
 		validateInput(input,"string");
 		int length = findLength(input);
 		char[] reversedString =new char[length];
-		int j=0;
-		for (int i =length-1;i>=0;i--)
+		 for (int i = 0; i < length; i++) 
 		{
-			reversedString[j] = input.charAt(i);
-			j++;
-		}
-		
+        	reversedString[i] = input.charAt(length - 1 - i);
+    	}
 		return String.valueOf(reversedString);
 	}
 
@@ -134,20 +128,20 @@ public class Task {
 		validateInput(input,"string");
 		validateInput(delimiterToSplit,"delimiter to split");
 		validateInput(delimiterToConcatenate,"delimiter to concatenate");
-		if(input.contains(delimiterToSplit)!=true)
-		{
-			throw new TaskException("The delimiter to split is not found");
-		}
+		// if(input.contains(delimiterToSplit))
+		// {
+		// 	throw new TaskException("The delimiter to split is not found");
+		// }
 	        return input.replace(delimiterToSplit,delimiterToConcatenate);	 
 	}
 	public  String[] encloseInStringArray(String input,String delimiterToSplit) throws TaskException 
 	{
 		validateInput(input,"string");
 		validateInput(delimiterToSplit,"delimiter to split");
-		if(input.contains(delimiterToSplit)!=true)
-		{
-			throw new TaskException("The delimiter to split is not found in the string ");
-		}
+		// if(input.contains(delimiterToSplit))
+		// {
+		// 	throw new TaskException("The delimiter to split is not found in the string ");
+		// }
 	        return input.split(delimiterToSplit);	 
 	}
 
