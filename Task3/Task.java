@@ -4,26 +4,26 @@ import myexceptions.EmptyException;
 
 
 public class Task {
-	public static void validateInput(String input ,String inputName) throws EmptyException
+	public  void validateInput(String input ,String inputName) throws EmptyException
 	{
 		if(input==null)
 		{
 			throw new EmptyException(inputName +" is empty ");
 		}
 	}
-	public static int findLength(String input) throws EmptyException
+	public  int findLength(String input) throws EmptyException
 	{	
 		validateInput(input,"string");
 		return input.length();
 	}
 	
-	public static char[] convertToCharArray(String input) throws EmptyException
+	public  char[] convertToCharArray(String input) throws EmptyException
 	{
 		validateInput(input,"string");
 		return input.toCharArray();
 	}
 	
-	public static char findPositionValue(String input,int positionFromLast) throws EmptyException , MismatchException
+	public  char findPositionValue(String input,int positionFromLast) throws EmptyException , MismatchException
 	{
 		validateInput(input,"string");
 		int length = findLength(input);
@@ -33,7 +33,7 @@ public class Task {
 		}
 		return input.charAt(length-positionFromLast);
 	}
-	public static int findNumberOfOccurences(String input , char character) throws EmptyException
+	public  int findNumberOfOccurences(String input , char character) throws EmptyException
 	{
 		validateInput(input,"string");
 		char[] charArray =convertToCharArray(input) ;
@@ -48,7 +48,7 @@ public class Task {
 		return count;
 	}
 	
-	public static int findGreatestPosition(String input , char character) throws EmptyException,MismatchException
+	public  int findGreatestPosition(String input , char character) throws EmptyException,MismatchException
 	{
 		validateInput(input,"string");
 		if(input.indexOf(character)==-1)
@@ -57,7 +57,7 @@ public class Task {
 		}
 		return input.lastIndexOf(character);
 	}	 
-	public static String findSuffix(String input,int numberOfCharacters) throws EmptyException , MismatchException
+	public  String findSuffix(String input,int numberOfCharacters) throws EmptyException , MismatchException
 	{
 		validateInput(input,"string");
 		int length = findLength(input);
@@ -68,7 +68,7 @@ public class Task {
 		return input.substring(findLength(input)-numberOfCharacters);
 	}
 	
-	public static String findPrefix(String input,int numberOfCharacters) throws EmptyException,MismatchException
+	public  String findPrefix(String input,int numberOfCharacters) throws EmptyException,MismatchException
 	{
 		validateInput(input,"string");
 		int length = findLength(input);
@@ -79,7 +79,7 @@ public class Task {
 		return input.substring(0,numberOfCharacters);
 	}
 
-	public static String replacePrefix(String input,int numberOfCharacters,String substitute) throws EmptyException,MismatchException
+	public  String replacePrefix(String input,int numberOfCharacters,String substitute) throws EmptyException,MismatchException
 	{
 		validateInput(input,"string");
 		validateInput(substitute,"substitute");
@@ -90,31 +90,31 @@ public class Task {
 		return input.replace(findPrefix(input,numberOfCharacters),substitute);
 	}
 	
-	public static boolean checkStartsWith(String input,String prefix) throws EmptyException 
+	public  boolean checkStartsWith(String input,String prefix) throws EmptyException 
 	{
 		validateInput(input,"string");
 		validateInput(prefix,"prefix");
 		return input.startsWith(prefix);
 	}
 	
-	public static boolean checkEndsWith(String input,String suffix) throws EmptyException 
+	public  boolean checkEndsWith(String input,String suffix) throws EmptyException 
 	{
 		validateInput(input,"string");
 		validateInput(suffix,"suffix");
 		return input.endsWith(suffix);
 	}
 
-	public static String convertLowerCase(String input) throws EmptyException 
+	public  String convertLowerCase(String input) throws EmptyException 
 	{
 		validateInput(input,"string");
 		return input.toLowerCase();
 	}
-	public static String convertUpperCase(String input) throws EmptyException 
+	public  String convertUpperCase(String input) throws EmptyException 
 	{
 		validateInput(input,"string");
 		return input.toUpperCase();
 	}
-	public static String reverseString(String input) throws EmptyException 
+	public  String reverseString(String input) throws EmptyException 
 	{
 		validateInput(input,"string");
 		int length = findLength(input);
@@ -129,7 +129,7 @@ public class Task {
 		return String.valueOf(reversedString);
 	}
 
-	public static String concatenateStrings(String input,String delimiterToSplit , String delimiterToConcatenate) throws EmptyException , MismatchException
+	public  String concatenateStrings(String input,String delimiterToSplit , String delimiterToConcatenate) throws EmptyException , MismatchException
 	{
 		validateInput(input,"string");
 		validateInput(delimiterToSplit,"delimiter to split");
@@ -140,7 +140,7 @@ public class Task {
 		}
 	        return input.replace(delimiterToSplit,delimiterToConcatenate);	 
 	}
-	public static String[] encloseInStringArray(String input,String delimiterToSplit) throws EmptyException , MismatchException
+	public  String[] encloseInStringArray(String input,String delimiterToSplit) throws EmptyException , MismatchException
 	{
 		validateInput(input,"string");
 		validateInput(delimiterToSplit,"delimiter to split");
@@ -151,7 +151,7 @@ public class Task {
 	        return input.split(delimiterToSplit);	 
 	}
 
-	public static String mergeWithDelimiter(String[] stringArray , String delimiter) throws EmptyException 
+	public  String mergeWithDelimiter(String[] stringArray , String delimiter) throws EmptyException 
 	{
 		if(stringArray==null)
 		{
@@ -160,19 +160,19 @@ public class Task {
 		validateInput(delimiter,"delimiter");
 		return String.join(delimiter,stringArray);
 	}
-	public static boolean checkEqualityCaseSensitive(String input1,String input2) throws EmptyException 
+	public boolean checkEqualityCaseSensitive(String input1,String input2) throws EmptyException 
 	{
 		validateInput(input1,"string1");
 		validateInput(input2,"string2");
 		return input1.equals(input2);
 	}
-	public static boolean checkEqualityCaseInSensitive(String input1,String input2) throws EmptyException 
+	public  boolean checkEqualityCaseInSensitive(String input1,String input2) throws EmptyException 
 	{
 		validateInput(input1,"string1");
 		validateInput(input2,"string2");
 		return input1.equalsIgnoreCase(input2);
 	}
-	public static String removeLeadingAndTrailingSpace(String input) throws EmptyException 
+	public  String removeLeadingAndTrailingSpace(String input) throws EmptyException 
 	{
 		validateInput(input,"string");
 		return input.trim();
