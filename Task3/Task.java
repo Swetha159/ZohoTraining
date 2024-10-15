@@ -1,5 +1,5 @@
 package tasks;
-import myexceptions.TaskException;
+import exceptions.TaskException;
 
 
 
@@ -26,10 +26,7 @@ public class Task {
 	public  char findPositionValue(String input,int positionFromLast) throws TaskException 
 	{
 		int length = findLength(input);
-		if(positionFromLast<1&&length<positionFromLast)
-		{
-			throw new TaskException("The position value is greater than the size of the string");
-		}
+		checkBoundary(positionFromLast , length );
 		return input.charAt(length-positionFromLast);
 	}
 	public  int findNumberOfOccurences(String input , char character) throws TaskException
@@ -59,20 +56,14 @@ public class Task {
 	public  String findSuffix(String input,int numberOfCharacters) throws TaskException 
 	{
 		int length = findLength(input);
-		if(length<numberOfCharacters)
-		{
-			throw new TaskException("The number of characters is greater than the size of the string");
-		}
-		return input.substring(findLength(input)-numberOfCharacters);
+		checkBoundary(numberOfCharacters,length);
+		return input.substring(length-numberOfCharacters);
 	}
 	
 	public  String findPrefix(String input,int numberOfCharacters) throws TaskException
 	{
 		int length = findLength(input);
-		if(length<numberOfCharacters)
-		{
-			throw new TaskException("The number of characters is greater than the size of the string");
-		}
+		checkBoundary(numberOfCharacters,length);
 		return input.substring(0,numberOfCharacters);
 	}
 
@@ -158,6 +149,13 @@ public class Task {
 		validateInput(input,"string");
 		return input.trim();
 	}
+	public void checkBoundary(int inputValue , int boundaryValue) throws TaskException
+	{
+		if(0>=inputValue || inputValue>boundaryValue)
+		{
+			throw new TaskException("The input value is out of range");
+		}
+	} 
 
 }
 

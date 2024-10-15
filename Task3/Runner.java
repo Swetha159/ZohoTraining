@@ -2,18 +2,16 @@ package test;
 import tasks.Task;
 import java.util.Scanner;
 import java.util.Arrays;
-import myexceptions.TaskException;
+import exceptions.TaskException;
 class Runner
 {
 	public static void main(String args[])
 	{
 	   Task task = new Task();
 	   Scanner scan = new Scanner(System.in);
-	   String inputString;
-           String delimiterToSplit;
-	   String delimiterToConcatenate,suffix,prefix;
-	   int numberOfCharacters;
-	   int choice =0;
+	   String inputString,delimiterToSplit,delimiterToConcatenate,suffix,prefix,string1,string2;
+	   int numberOfCharacters,choice=0;
+	   char character;
 	   while(choice!=21)
 	   {
 		
@@ -42,13 +40,8 @@ class Runner
 				 "Enter the choice :");
 		try
 	        {
-			choice = Integer.parseInt(scan.nextLine());
-			
+			choice = scan.nextInt();
 
-                	if (choice < 1 || choice > 21) 
-			{
-                    		throw new NumberFormatException("Invalid choice. Please enter a number between 1 and 21.");
-                	}
 			switch(choice)
 			{
 				case 1:
@@ -61,7 +54,6 @@ class Runner
 					inputString = scan.next();
 					char[] charArray = task.convertToCharArray(inputString);
 					System.out.println(Arrays.toString(charArray));
-					scan.nextLine();
 					break;
 		
 				case 3 : //penultimate
@@ -69,28 +61,32 @@ class Runner
 					inputString = scan.next();
 					System.out.print("Enter the position value form last  :");
 					int positionFromLast = scan.nextInt();
-					System.out.println("The Character is " + task.findPositionValue(inputString,positionFromLast));
-					scan.nextLine(); 
+					System.out.println("The Character is " + task.findPositionValue(inputString,positionFromLast)); 
 					break;
 				case 4: // number of occurences
 					System.out.print("Enter a String :");
 					inputString = scan.next();
 					System.out.print("Enter a character (to find the number of occurences):");
-					char character = scan.next().charAt(0);
+					character = scan.next().charAt(0); 
 					int count = task.findNumberOfOccurences(inputString ,  character );
 					System.out.println("There are "+count+ " occurences of the character \'"+character+"\' in the string \""+inputString+"\"");
-			        	scan.nextLine(); 
 					break;
 
 				case 5 ://greatest position
-					//System.out.print("Enter a String :");
-					//inputString = scan.next();
-					inputString =null;
+					System.out.print("Enter a String :");
+					inputString = scan.next();
+					//inputString =null;
 					System.out.print("Enter a character (to find the greatest position):");
 					character = scan.next().charAt(0);
 					int index = task.findGreatestPosition(inputString,character);
-					System.out.println("The Greatest Position of the character \'"+character+"\' in the string\""+inputString+ "\"is "+index);
-					scan.nextLine(); 
+					if(index==-1)
+					{
+						System.out.println("The character is not found in the string ");
+					}
+					else
+					{
+						System.out.println("The Greatest Position of the character \'"+character+"\' in the string\""+inputString+ "\"is "+index);
+					}	
 					break;
 
 				case 6://suffix
@@ -98,8 +94,7 @@ class Runner
 					inputString = scan.next();
 					System.out.print("Enter the number of characters  :");
 					numberOfCharacters = scan.nextInt();
-					System.out.println("The Suffix of the string \""+inputString+"\" is "+ task.findSuffix(inputString,numberOfCharacters));
-					scan.nextLine(); 
+					System.out.println("The Suffix of the string \""+inputString+"\" is "+ task.findSuffix(inputString,numberOfCharacters)); 
 					break;
 
 				case 7://findprefix
@@ -108,7 +103,6 @@ class Runner
 					System.out.print("Enter the number of characters  :");
 					numberOfCharacters = scan.nextInt();
 					System.out.println("The Prefix of the string \""+inputString+"\" is "+ task.findPrefix(inputString,numberOfCharacters));
-					scan.nextLine(); 
 					break;
 
 				case 8: //replace prefix
@@ -119,8 +113,7 @@ class Runner
 					System.out.print("Enter a Substitute String :");
 					String substitute = scan.next();
 					String replacedString = task.replacePrefix(inputString,numberOfCharacters,substitute);
-					System.out.println("After the replacement of the first " + numberOfCharacters + " characters with \""+substitute+"\" , the string will be "+replacedString);
-					scan.nextLine(); 
+					System.out.println("After the replacement of the first " + numberOfCharacters + " characters with \""+substitute+"\" , the string will be "+replacedString); 
 					break;
 
 				case 9:  //startswith
@@ -135,8 +128,7 @@ class Runner
 					else
 					{
 						System.out.println("The String doesn't start with \""+prefix+"\"");
-					}
-					scan.nextLine(); 
+					} 
 			  		break;
 			
 				case 10: //endswith
@@ -151,23 +143,20 @@ class Runner
 					else
 					{
 						System.out.println("The String doesn't end with \""+suffix+"\"");
-					}
-					scan.nextLine(); 
+					} 
 					break;
 
 				case 11 :  //lowercaseconversion
 					System.out.print("Enter a String :");
-					inputString = scan.next();
+					inputString = scan.next(); 
 					inputString = task.convertLowerCase(inputString);
 					System.out.println("Converted to lowercase:" + inputString);
-					scan.nextLine(); 
 					break;
 				case 12 : //uppercaseconversion
 					System.out.print("Enter a String :");
 					inputString = scan.next();
 					inputString = task.convertUpperCase(inputString);
-					System.out.println("Converted to uppercase:" + inputString);
-					scan.nextLine(); 
+					System.out.println("Converted to uppercase:" + inputString); 
 					break;
 			
 				case 13: //reverse
@@ -180,8 +169,7 @@ class Runner
 				case 14:  //multiplestrings
 					System.out.print("Enter a String :");
 					inputString = scan.nextLine();
-					System.out.println("A Line with multiple strings :"+inputString);
-					scan.nextLine(); 
+					System.out.println("A Line with multiple strings :"+inputString); 
 					break;
 
 				case 15: //concatenate
@@ -189,7 +177,6 @@ class Runner
 					inputString = scan.nextLine();
 					System.out.println("Enter the delimiter to split(for space as delimiter ,enter yes:" );
 					delimiterToSplit = scan.next();
-					scan.nextLine();
 					if(delimiterToSplit.equals("yes"))
 					{
 						delimiterToSplit=" ";
@@ -200,8 +187,7 @@ class Runner
 					{
 						delimiterToConcatenate="";
 					}
-					System.out.println("Concatenated String :"+task.concatenateStrings(inputString,delimiterToSplit,delimiterToConcatenate));
-					scan.nextLine(); 
+					System.out.println("Concatenated String :"+task.concatenateStrings(inputString,delimiterToSplit,delimiterToConcatenate)); 
 					break;
 			
 				case 16:  //string array
@@ -216,7 +202,6 @@ class Runner
 
 					String[] strings = task.encloseInStringArray(inputString , delimiterToSplit);
 					System.out.println(Arrays.toString(strings));
-					scan.nextLine(); 
 					break;
 			
 				case 17:  //merge
@@ -229,19 +214,19 @@ class Runner
 						stringArray[i] = scan.next();
 					}
 					System.out.println("Enter the delimiter for merging(for space as delimiter ,enter yes:" );
-					String delimiter = scan.next();
-					if(delimiter.equals("yes"))
+					delimiterToConcatenate = scan.next();
+					if(delimiterToConcatenate.equals("yes"))
 					{
-						delimiter=" ";
+						delimiterToConcatenate=" ";
 					}
-					System.out.println("The Merged String with \'"+delimiter+"\' is "+task.mergeWithDelimiter(stringArray ,delimiter));
-					scan.nextLine(); 
+					System.out.println("The Merged String with \'"+delimiterToConcatenate+"\' is "+task.mergeWithDelimiter(stringArray ,delimiterToConcatenate));
 					break;
+
 				case 18: //equal(casesensitive)
 					System.out.print("Enter a String1 :");
-					String string1 = scan.next();
+					string1 = scan.next();
 					System.out.print("Enter a String2 :");
-					String string2 = scan.next();
+					string2 = scan.next();
 					if(task.checkEqualityCaseSensitive(string1,string2))
 					{
 						System.out.println("The Strings are Equal");
@@ -250,7 +235,6 @@ class Runner
 					{
 						System.out.println("The Strings are not Equal");
 					}
-					scan.nextLine(); 
 					break;
 				case 19:  //equal(case-insensitive)
 					System.out.print("Enter a String1 :");
@@ -264,8 +248,7 @@ class Runner
 					else
 					{
 						System.out.println("The Strings are not Equal");
-					}
-					scan.nextLine(); 
+					} 
 					break;
                 		case 20: //leading and trailing space
 					System.out.print("Enter String :");
@@ -280,10 +263,6 @@ class Runner
 	      	catch(TaskException e)
 	      	{
 			System.out.println(e.getMessage());
-	      	}
-		catch(NumberFormatException e)
-	      	{
-			System.out.println("Enter Valid Input");
 	      	}
 		
 
