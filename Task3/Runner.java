@@ -2,7 +2,9 @@ package test;
 import tasks.Task;
 import java.util.Scanner;
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import exceptions.TaskException;
+import utility.Util;
 class Runner
 {
 	public static void main(String args[])
@@ -45,7 +47,7 @@ class Runner
 			switch(choice)
 			{
 				case 1:
-					int stringLength = task.findLength(args[0]);
+					int stringLength = Util.findLength(args[0]);
 					System.out.println("The length of the string \""+args[0]+"\" is " + stringLength);
 					break;
 		
@@ -182,7 +184,7 @@ class Runner
 						delimiterToSplit=" ";
 					}
 					System.out.println("Enter the delimiter to concatenate(for no delimiter ,enter yes:" );
-					delimiterToConcatenate = scan.next();
+					delimiterToConcatenate = scan.nextLine();
 					if(delimiterToConcatenate.equals("yes"))
 					{
 						delimiterToConcatenate="";
@@ -207,12 +209,13 @@ class Runner
 				case 17:  //merge
 					System.out.print("Enter number of strings :");
 					int numberOfStrings = scan.nextInt();
-					String[] stringArray = new String[numberOfStrings] ;
-					for(int i =0;i<numberOfStrings;i++)
-					{
-						System.out.println("Enter String "+i+":");
-						stringArray[i] = scan.next();
-					}
+					//String[] stringArray = new String[numberOfStrings] ;
+					String[] stringArray =null;
+					//for(int i =0;i<numberOfStrings;i++)
+					//{
+					//	System.out.println("Enter String "+i+":");
+					//	stringArray[i] = scan.next();
+					//}
 					System.out.println("Enter the delimiter for merging(for space as delimiter ,enter yes:" );
 					delimiterToConcatenate = scan.next();
 					if(delimiterToConcatenate.equals("yes"))
@@ -260,6 +263,11 @@ class Runner
 				
 			}
 		}
+		 catch (InputMismatchException e) 
+		{
+                	System.out.println("Invalid input. Please enter an integer.");
+                	scan.nextLine(); 
+                }
 	      	catch(TaskException e)
 	      	{
 			System.out.println(e.getMessage());
