@@ -5,8 +5,37 @@ import java.util.Arrays;
 import java.util.InputMismatchException;
 import exceptions.TaskException;
 import utility.Util;
-class Runner
+public class Runner
 {
+	public  static void function() throws Exception  {
+	try{
+		Scanner scan = new Scanner(System.in);
+		Task task = new Task();
+		String delimiterToConcatenate;
+						
+		System.out.print("Enter number of strings :");
+		int numberOfStrings = scan.nextInt();
+		//String[] stringArray = new String[numberOfStrings] ;
+		String[] stringArray =null;
+		//for(int i =0;i<numberOfStrings;i++)
+		//{
+		//	System.out.println("Enter String "+i+":");
+		//	stringArray[i] = scan.next();
+		//}
+		System.out.println("Enter the delimiter for merging(for space as delimiter ,enter yes:" );
+		delimiterToConcatenate = scan.next();
+		if(delimiterToConcatenate.equals("yes"))
+		{
+			delimiterToConcatenate=" ";
+		}
+		System.out.println("The Merged String with \'"+delimiterToConcatenate+"\' is"+task.mergeWithDelimiter(stringArray ,delimiterToConcatenate));
+	}
+	catch (Exception ex) {
+                throw new Exception("An error occurred while processing the task.", ex);
+        }
+	}
+
+
 	public static void main(String args[])
 	{
 	   Task task = new Task();
@@ -173,7 +202,7 @@ class Runner
 					inputString = scan.nextLine();
 					System.out.println("A Line with multiple strings :"+inputString); 
 					break;
-
+	
 				case 15: //concatenate
  					System.out.print("Enter a String :");
 					inputString = scan.nextLine();
@@ -207,22 +236,15 @@ class Runner
 					break;
 			
 				case 17:  //merge
-					System.out.print("Enter number of strings :");
-					int numberOfStrings = scan.nextInt();
-					//String[] stringArray = new String[numberOfStrings] ;
-					String[] stringArray =null;
-					//for(int i =0;i<numberOfStrings;i++)
-					//{
-					//	System.out.println("Enter String "+i+":");
-					//	stringArray[i] = scan.next();
-					//}
-					System.out.println("Enter the delimiter for merging(for space as delimiter ,enter yes:" );
-					delimiterToConcatenate = scan.next();
-					if(delimiterToConcatenate.equals("yes"))
-					{
-						delimiterToConcatenate=" ";
-					}
-					System.out.println("The Merged String with \'"+delimiterToConcatenate+"\' is "+task.mergeWithDelimiter(stringArray ,delimiterToConcatenate));
+					try {
+            					function();
+        				} catch (Exception ex) {
+            					System.out.println(ex.getMessage());
+           					Throwable cause = ex.getCause();
+						System.out.println(ex.getCause());
+                				System.out.println("Cause: " + cause.getMessage());
+                				ex.printStackTrace();
+            				}
 					break;
 
 				case 18: //equal(casesensitive)
@@ -276,6 +298,8 @@ class Runner
 
 		
 	   }
+	 
+
 		
       }
 }
