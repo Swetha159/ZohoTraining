@@ -22,6 +22,24 @@ public class Util
 		validateInput(input,"string");
 		return input.length();
 	}
+	public static int findLength(Object input) throws TaskException 
+	{
+    		validateInput(input, "string or stringBuilder");
+    
+    		if (input instanceof String) 
+		{
+       			return ((String) input).length();
+   		} 
+		else if (input instanceof StringBuilder) 
+		{
+        		return ((StringBuilder) input).length();
+    		} 
+		else 
+		{
+       		throw new TaskException("Unsupported input type ");
+   		}
+	}
+
 
 }
 

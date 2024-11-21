@@ -7,9 +7,11 @@ import exceptions.TaskException;
 import utility.Util;
 public class Runner
 {
-	public  static void function() throws Exception  {
+	Scanner scan = new Scanner(System.in);
+	public  static void function() throws TaskException  {
+	//Scanner scan = new Scanner(System.in);
 	try{
-		Scanner scan = new Scanner(System.in);
+		//Scanner scan = new Scanner(System.in);
 		Task task = new Task();
 		String delimiterToConcatenate;
 						
@@ -30,8 +32,8 @@ public class Runner
 		}
 		System.out.println("The Merged String with \'"+delimiterToConcatenate+"\' is"+task.mergeWithDelimiter(stringArray ,delimiterToConcatenate));
 	}
-	catch (Exception ex) {
-                throw new Exception("An error occurred while processing the task.", ex);
+	catch (TaskException ex) {
+                throw new TaskException("An error occurred while processing the task.", ex);
         }
 	}
 
@@ -39,7 +41,7 @@ public class Runner
 	public static void main(String args[])
 	{
 	   Task task = new Task();
-	   Scanner scan = new Scanner(System.in);
+	 //  Scanner scan = new Scanner(System.in);
 	   String inputString,delimiterToSplit,delimiterToConcatenate,suffix,prefix,string1,string2;
 	   int numberOfCharacters,choice=0;
 	   char character;
@@ -71,6 +73,7 @@ public class Runner
 				 "Enter the choice :");
 		try
 	        {
+			 Scanner scan = new Scanner(System.in);
 			choice = scan.nextInt();
 
 			switch(choice)
@@ -238,11 +241,9 @@ public class Runner
 				case 17:  //merge
 					try {
             					function();
-        				} catch (Exception ex) {
-            					System.out.println(ex.getMessage());
-           					Throwable cause = ex.getCause();
-						System.out.println(ex.getCause());
-                				System.out.println("Cause: " + cause.getMessage());
+        				} catch (TaskException ex) {
+            					//System.out.println(ex.getMessage());
+						//System.out.println(ex.getCause());
                 				ex.printStackTrace();
             				}
 					break;
@@ -294,7 +295,10 @@ public class Runner
 	      	{
 			System.out.println(e.getMessage());
 	      	}
-		
+		finally
+		{
+			scan.close();
+		}
 
 		
 	   }
