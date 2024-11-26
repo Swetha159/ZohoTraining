@@ -14,12 +14,13 @@ public class Runner
 		StringBuilder stringBuilder;
 		String inputString ,substring,delimiter;
 		String[] stringArray;
-		while(choice!=11)
+    		try
 		{
+			while(choice!=11)
+			{
 				System.out.println("Choose from the options below:\n1.Create StringBuilder with and without string \n2.Add strings in stringbuilder\n3.Insert string \n 4.delete first string \n5.Replace delimiter\n6.reverse the string\n7.delete substring with specified index\n8.replace substring with specified index\n9.find first index of substring\n10.find last index of substring\n11.Exit ");
 				System.out.println("Enter your option :");
 				choice = scan.nextInt();
-				try{
 					switch(choice)
 					{
 						case 1:
@@ -70,7 +71,8 @@ public class Runner
 								System.out.println("Enter the string to add:");
 								stringArray[i] = scan.nextLine(); 
 							}
-							stringBuilder = task.appendStringsWithDelimiter(stringArray , delimiter);
+							stringBuilder = task.getStringBuilder() ;
+							task.appendStringsWithDelimiter(stringBuilder ,stringArray , delimiter);
 							printLengthAndString(stringBuilder);
 							System.out.print("Enter the string to be inserted:");
 							inputString = scan.nextLine();
@@ -94,7 +96,8 @@ public class Runner
 								System.out.println("Enter the string to add:");
 								stringArray[i] = scan.nextLine(); 
 							} 
-							stringBuilder = task.appendStringsWithDelimiter(stringArray , delimiter);
+							stringBuilder = task.getStringBuilder() ;
+							task.appendStringsWithDelimiter(stringBuilder ,stringArray , delimiter);
 							printLengthAndString(stringBuilder);
 							task.deleteString(stringBuilder,delimiter);
 							printLengthAndString(stringBuilder);
@@ -116,10 +119,12 @@ public class Runner
 								System.out.println("Enter the string to add:");
 								stringArray[i] = scan.nextLine(); 
 							} 
-							stringBuilder = task.appendStringsWithDelimiter(stringArray , delimiter);
+							stringBuilder = task.getStringBuilder() ;
+							task.appendStringsWithDelimiter(stringBuilder ,stringArray , delimiter);
 							printLengthAndString(stringBuilder);
 							System.out.println("Enter the delimiter to replace:");
-							char replacingDelimiter = scan.next().charAt(0);
+							//char replacingDelimiter = scan.next().charAt(0);
+							String replacingDelimiter = scan.nextLine();
 							task.replaceDelimiter(stringBuilder,delimiter,replacingDelimiter);
 							printLengthAndString(stringBuilder);
 								break;
@@ -141,7 +146,8 @@ public class Runner
 								System.out.println("Enter the string to add:");
 								stringArray[i] = scan.nextLine(); 
 							} 
-							stringBuilder = task.appendStringsWithDelimiter(stringArray , delimiter);
+							stringBuilder = task.getStringBuilder() ;
+							task.appendStringsWithDelimiter(stringBuilder ,stringArray , delimiter);
 							printLengthAndString(stringBuilder);
 							task.reverseStringBuilder(stringBuilder);
 							printLengthAndString(stringBuilder);
@@ -149,15 +155,10 @@ public class Runner
 
 						case 7 :
 							scan.nextLine(); 
-							System.out.println("Enter the StringBuilder (minimum length 10): ");
+							System.out.println("Enter the StringBuilder: ");
 							inputString = scan.nextLine();
 							stringBuilder = task.getStringBuilder();
 							task.appendString(stringBuilder,inputString);
-							if(!(task.checkLength(stringBuilder)))
-							{
-								System.out.println("The StringBuilder's length is less than 10 ");
-								break;
-							}
 							printLengthAndString(stringBuilder);
 							System.out.println("Enter the starting index of the substring to delete ");
 							int startIndex = scan.nextInt();
@@ -169,15 +170,10 @@ public class Runner
 
 						case 8 :
 							scan.nextLine();
-							System.out.println("Enter the StringBuilder (minimum length 10): ");
+							System.out.println("Enter the StringBuilder: ");
 							inputString = scan.nextLine();
 							stringBuilder = task.getStringBuilder();
 							task.appendString(stringBuilder,inputString);
-							if(!(task.checkLength(stringBuilder)))
-							{
-								System.out.println("The StringBuilder's length is less than 10 ");
-								break;
-							}
 							printLengthAndString(stringBuilder);
 							System.out.println("Enter the starting index of the substring to replace ");
 							startIndex = scan.nextInt();
@@ -207,7 +203,8 @@ public class Runner
 								System.out.println("Enter the string to add:");
 								stringArray[i] = scan.nextLine(); 
 							} 
-							stringBuilder = task.appendStringsWithDelimiter(stringArray , delimiter);
+							stringBuilder = task.getStringBuilder() ;
+							task.appendStringsWithDelimiter(stringBuilder ,stringArray , delimiter);
 							printLengthAndString(stringBuilder);
 							System.out.println("Enter the character to search");
 							substring= scan.next();
@@ -229,7 +226,8 @@ public class Runner
 								System.out.println("Enter the string to add:");
 								stringArray[i] = scan.nextLine(); 
 							} 
-							stringBuilder = task.appendStringsWithDelimiter(stringArray , delimiter);
+							stringBuilder = task.getStringBuilder() ;
+							task.appendStringsWithDelimiter(stringBuilder ,stringArray , delimiter);
 							printLengthAndString(stringBuilder);
 							System.out.println("Enter the substring to search :");
 							substring  = scan.next();
@@ -241,14 +239,18 @@ public class Runner
 							System.out.println("Invalid Choice");
 							
 					}
-			}
-			catch(TaskException e)
-			{
-				System.out.println(e.getMessage());
-			}
+			
 			
 		}
-		scan.close();
+		}
+		catch(TaskException e)
+		{
+				System.out.println(e.getMessage());
+		}
+		finally
+		{
+			scan.close();
+		}
 	}
 	public static void printLengthAndString( StringBuilder stringBuilder) throws TaskException
 	{
