@@ -44,6 +44,10 @@ public class Car
 	{
         	System.out.println("Car under maintenance");
 	}
-	
+	@Override
+	public String toString()
+	{
+		return "Year Of Make :"+this.getYearOfMake() + "\nEngine Number :" + this.getEngineNumber() + "\nType :" + this.getType();  
+	}
 	
 }

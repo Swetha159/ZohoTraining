@@ -40,6 +40,13 @@ public class SCross extends Car
 	{
 		this.color=string;
 	}
+	@Override
+	public String toString()
+	{
+		return "No. of Seats :"+ this.getSeats() + "\nNo. of airbags :"+ this.getAirbags() +
+			"\nModel Name :"+ this.getModel() + "\nColor :"+ this.getColor();
+	}
+
 	@Override 
 	public void maintenance()
 	{

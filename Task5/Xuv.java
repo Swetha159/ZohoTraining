@@ -40,6 +40,13 @@ public class Xuv extends Car
 	{
 		this.color=string;
 	}
+	@Override
+	public String toString()
+	{
+		return "No. of Seats :"+ this.getSeats() + "\nNo. of airbags :"+ this.getAirbags() +
+			"\nModel Name :"+ this.getModel() + "\nColor :"+ this.getColor();
+	}
+
 	public Xuv()
 	{
 		super("Called from Xuv class constructor");

@@ -15,6 +15,7 @@ public class Runner
 	public static void main(String args[])
 	{
 		Scanner scan = new Scanner(System.in);
+		Runner runner = new Runner();
 		try
 		{
 			int choice=0,seats,airbags,yearOfMake;
@@ -45,7 +46,7 @@ public class Runner
 							swift.setAirbags(airbags);
 							swift.setModel(model);
 							swift.setColor(color);
-							printCarDetails(swift);
+							System.out.println(swift);
 							break;
 						case 2:
 							sCross = new SCross();
@@ -72,19 +73,19 @@ public class Runner
 							sCross.setYearOfMake(yearOfMake);
 							sCross.setEngineNumber(engineNumber);
 							sCross.setType(type);
-							printCarDetails(sCross);
+							System.out.println(sCross);
 							break;
 						case 3 :
 							swift = new Swift();
-							identifyCarType(swift);
+							runner.identifyCarType(swift);
 							xuv = new Xuv();
-							identifyCarType(xuv);
+							runner.identifyCarType(xuv);
 							sCross = new SCross();
-							identifyCarType(sCross);
+							runner.identifyCarType(sCross);
 							break;
 						case 4 :
 							swift = new Swift();
-							operateOnSwift(swift);		
+							runner.operateOnSwift(swift);		
 							//Car obj = new Swift(); 	
 							//operateOnSwift(obj);
 							//sCross = new SCross();
@@ -133,60 +134,30 @@ public class Runner
 		scan.close();
 		}
 	}
-	public static void identifyCarType(Car car) 
+	public  void identifyCarType(Car car) 
 	{
-        if (car instanceof Swift) 
+        	if (car instanceof Swift) 
 		{
-        	System.out.println("Hatch");
-        } 
+        		System.out.println("Hatch");
+        	} 
 		else if (car instanceof Xuv) 
 		{
-            System.out.println("SUV");
-        } 
+            		System.out.println("SUV");
+        	} 
 		else if (car instanceof SCross) 
 		{
-            System.out.println("Sedan");
-        } 
+           		 System.out.println("Sedan");
+        	} 
 		else 
 		{
-        	System.out.println("Unknown Car Type");
-       	}
+        		System.out.println("Unknown Car Type");
+       		}
         }
-	public static void operateOnSwift(Swift swift) 
+	public void operateOnSwift(Swift swift) 
 	{
         	System.out.println("Handling Swift");
 	}
-	public static  void printCarDetails(Car car)
-	{
-		if (car instanceof Swift) 
-		{
-        	System.out.println("No. of Seats :"+ ((Swift) car).getSeats());
-			System.out.println("No. of airbags :"+ ((Swift) car).getAirbags());
-			System.out.println("Model Name :"+ ((Swift) car).getModel());
-			System.out.println("Color :"+ ((Swift) car).getColor());
-		}
-		else if (car instanceof Xuv) 
-		{
-        	System.out.println("No. of Seats :"+ ((Xuv) car).getSeats());
-			System.out.println("No. of airbags :"+ ((Xuv) car).getAirbags());
-			System.out.println("Model Name :"+ ((Xuv) car).getModel());
-			System.out.println("Color :"+ ((Xuv) car).getColor());
-		}
-		else if (car instanceof SCross) 
-		{
-        	System.out.println("No. of Seats :"+ ((SCross) car).getSeats());
-			System.out.println("No. of airbags :"+ ((SCross) car).getAirbags());
-			System.out.println("Model Name :"+ ((SCross) car).getModel());
-			System.out.println("Color :"+ ((SCross) car).getColor());
-		}
-		else
-		{
-			System.out.println("Year of make : "+car.getYearOfMake());
-			System.out.println("Engine number : :"+car.getEngineNumber());
-			System.out.println("Type:"+car.getType());
-		}
-	}
-	
+		
 	
 	
 }
