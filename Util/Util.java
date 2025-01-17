@@ -13,6 +13,8 @@ public class Util
 	}
 	public static void checkBoundary(int inputValue , int boundaryValue) throws TaskException
 	{
+		validateInput(inputValue , "Input Value");
+		validateInput(boundaryValue , "Boundary Value");
 		if(0>=inputValue || inputValue>boundaryValue)
 		{
 			throw new TaskException("The input value is out of range");
